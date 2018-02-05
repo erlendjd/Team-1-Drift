@@ -16,18 +16,19 @@
       this.x = x;
       this.y = y;
       this.r = r;
-      this.farge ="rgb(" + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) +")";
-;
+      this.farge ="rgb(" +  Math.floor(Math.random() * 255) + ", " +
+                            Math.floor(Math.random() * 255) + ", " +
+                            Math.floor(Math.random() * 255) +")";
     }
 
     flytt() {
-      if (this.x < 0||this.x >600 ||this.y<0||this.y>400) {
-        break;
-      }
-      else {
-      this.x = this.x + Math.floor(Math.random() * 10 - 5);
-      this.y = this.y + Math.floor(Math.random() * 10 - 5);
-    }
+      let flyttLengdeX = Math.floor(Math.random() * 10 - 5);
+      let flyttLengdeY =  Math.floor(Math.random() * 10 - 5);
+      let nyPosisjonX = this.x + flyttLengdeX
+      let nyPosisjonY = this.y + flyttLengdeY
+      if (nyPosisjonX > 0 && nyPosisjonX <600) {this.x = nyPosisjonX;}
+      if (nyPosisjonY > 0 && nyPosisjonX <400) {this.y = nyPosisjonY;}
+
 
     vis() {
       ctx.beginPath();
@@ -49,7 +50,6 @@
         return false;
       }
     }
-
   };
 
   var canvas = document.getElementById("canvas");
