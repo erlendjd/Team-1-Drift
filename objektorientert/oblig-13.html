@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  <canvas id="canvas" height="400" width="600"></canvas>
+
+  <script>
+
+
+  class Boble {
+    constructor(x,y,r) {
+      this.x = x;
+      this.y = y;
+      this.r = r;
+      this.farge ="rgb(" + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) +")";
+;
+    }
+
+    flytt() {
+      if (this.x < 0||this.x >600 ||this.y<0||this.y>400) {
+        break;
+      }
+      else {
+      this.x = this.x + Math.floor(Math.random() * 10 - 5);
+      this.y = this.y + Math.floor(Math.random() * 10 - 5);
+    }
+
+    vis() {
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+      ctx.fillStyle = this.farge;
+      ctx.fill();
+      ctx.strokeStyle = "white";
+      ctx.stroke();
+    }
+
+    inneholder(x,y) {
+      let a = this.x - x;
+      let b = this.y - y;
+      let d = Math.sqrt(a*a + b*b);
+
+      if (d < this.r) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+  };
+
+  var canvas = document.getElementById("canvas");
+  var ctx = canvas.getContext("2d");
+  canvas.addEventListener("mousemove",musbeveg,false);
+  canvas.addEventListener("mousedown",musklikk,false);
+
+  var bobler = [];
+
+  setInterval(tegn,100);
+
+  function reset() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0, canvas.width, canvas.height);
+  }
+
+  function tegn() {
+    reset();
+    for (let i = 0; i < bobler.length; i++) {
+      bobler[i].flytt();
+      bobler[i].vis();
+    }
+  }
+
+  function musbeveg(event) {
+    for (let i = 0; i < bobler.length; i++) {
+      if (bobler[i].inneholder(event.x,event.y)) {
+        bobler[i].farge = "rgb(" + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) +")";
+      } else {
+        bobler[i].farge = "rgb(" + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) + ", " + Math.floor(Math.random() * 255) +")";
+      }
+    }
+  }
+
+  function musklikk(event) {
+    var valgtboble = false;
+
+    for (let i = 0; i < bobler.length; i++) {
+      if (bobler[i].inneholder(event.x,event.y)) {
+        bobler.splice(i,1);
+        valgtboble = true;
+      }
+    }
+
+    if (valgtboble == false) {
+      let r = Math.floor(Math.random() * 40 + 10);
+      let b = new Boble(event.x,event.y,r);
+      bobler.push(b);
+    }
+  }
+function nyboble(){
+  let r = Math.floor(Math.random() * 40 + 10)
+  let x =Math.floor(Math.random()*600);
+  let y = Math.floor(Math.random()*600)
+  let b = new Boble(x,y,r);
+  bobler.push(b)
+}
+
+setInterval(nyboble,1000);
+  </script>
+
+  </body>
+</html>
