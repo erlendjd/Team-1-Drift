@@ -26,8 +26,8 @@
       let flyttLengdeY =  Math.floor(Math.random() * 10 - 5);
       let nyPosisjonX = this.x + flyttLengdeX
       let nyPosisjonY = this.y + flyttLengdeY
-      if (nyPosisjonX > 0 && nyPosisjonX <600) {this.x = nyPosisjonX;}
-      if (nyPosisjonY > 0 && nyPosisjonX <400) {this.y = nyPosisjonY;}
+      if (nyPosisjonX > (0+this.r) && nyPosisjonX <(600-this.r)) {this.x = nyPosisjonX;}
+      if (nyPosisjonY > (0+this.r) && nyPosisjonY <(400-this.r)) {this.y = nyPosisjonY;}
     }
 
     vis() {
