@@ -59,7 +59,7 @@
 
   var bobler = [];
 
-  setInterval(tegn,100);
+  setInterval(tegn,10);
 
   function reset() {
     ctx.fillStyle = "black";
@@ -67,7 +67,7 @@
   }
 
   function tegn() {
-    reset();
+    // reset();
     for (let i = 0; i < bobler.length; i++) {
       bobler[i].flytt();
       bobler[i].vis();
@@ -108,7 +108,7 @@ function nyboble(){
   bobler.push(b)
 }
 
-setInterval(nyboble,1000);
+setInterval(nyboble,100);
   </script>
 
   </body>
